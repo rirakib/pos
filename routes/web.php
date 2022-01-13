@@ -33,9 +33,9 @@ Route::get('/logout',[LogoutController::class,'logout']);
 
 Route::get('/home',[HomeController::class,'home'])->middleware('login_check');
 
-Route::resource('/home/category/',CategoryController::class)->middleware('login_check');
+Route::resource('/home/category',CategoryController::class)->middleware('login_check');
 
-Route::resource('/home/subcategory/',SubcategoryController::class)->middleware('login_check');
+Route::resource('/home/subcategory',SubcategoryController::class)->middleware('login_check');
 
 
 

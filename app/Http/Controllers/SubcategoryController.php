@@ -15,7 +15,8 @@ class SubcategoryController extends Controller
     public function index()
     {
         //
-        return view('subcategory.index');
+        $data = Subcategory::all();
+        return view('subcategory.index',compact('data'));
     }
 
     /**
@@ -38,6 +39,9 @@ class SubcategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->all(['cat_id','name']);
+        Subcategory::create($data);
+        return redirect()->to('/home/subcategory/')->with('stutus','Subcategory created Successfully');
     }
 
     /**
@@ -60,6 +64,7 @@ class SubcategoryController extends Controller
     public function edit(Subcategory $subcategory)
     {
         //
+        dd($subcategory);
     }
 
     /**

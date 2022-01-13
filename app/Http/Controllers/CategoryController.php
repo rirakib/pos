@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -61,10 +62,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
         //
-        dd($category);
+        $data = DB::table('categories')->find($id);
+        return view('category.edit',compact('data'));
     }
 
     /**
@@ -77,6 +79,9 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         //
+       
+        $category->update($request->all());
+        return redirect()->back()->with('stutus','Update Successfully');
     }
 
     /**
@@ -88,5 +93,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+        $category->delete();
+        return redirect()->back()->with('stutus','Data hasbeen deleted');
     }
 }

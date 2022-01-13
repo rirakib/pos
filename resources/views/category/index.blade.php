@@ -18,8 +18,14 @@
         <tr>
             <td>{{$category->id}}</td>
             <td>{{$category->name}}</td>
-            <td><a href="{{url('/home/category'.$category->id.'/edit')}}">Edit</a></td>
-            <td>Delete</td>
+            <td><a href="{{url('/home/category/'.$category->id.'/edit')}}">Edit</a></td>
+            <td>
+                <form action="{{url('/home/category/'.$category->id)}}" method="post">
+                @csrf
+                @method('DELETE')
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
         </tr>
         @endforeach
     </tbody>
